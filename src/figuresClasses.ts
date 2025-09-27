@@ -19,15 +19,13 @@ export class Triangle implements Figure {
 
   constructor(color: Color, a: number, b: number, c: number) {
     if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('any length is <= 0');
+      throw new Error('All side lengths must be > 0');
     }
 
     const sideMax = Math.max(a, b, c);
 
     if (sideMax >= a + b + c - sideMax) {
-      throw new Error(
-        'the longest side of a triangle is >= than a sum of two others',
-      );
+      throw new Error('sides 1, 2 and 3 can not form a triangle');
     }
     this.color = color;
     this.a = a;
@@ -39,7 +37,7 @@ export class Triangle implements Figure {
     const p = (this.a + this.b + this.c) / 2;
     const area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
 
-    return Math.round(area * 100) / 100;
+    return Math.floor(area * 100) / 100;
   }
 }
 
@@ -52,7 +50,7 @@ export class Circle implements Figure {
 
   constructor(color: Color, radius: number) {
     if (radius <= 0) {
-      throw new Error('the radius shoud be biggest 0');
+      throw new Error('radius must be > 0');
     }
     this.color = color;
     this.radius = radius;
@@ -72,21 +70,21 @@ export class Rectangle implements Figure {
 
   width: number;
 
-  heigth: number;
+  height: number;
 
-  constructor(color: Color, width: number, heigth: number) {
-    if (width <= 0 || heigth <= 0) {
-      throw new Error('width and heigth shoud be biggest 0');
+  constructor(color: Color, width: number, height: number) {
+    if (width <= 0 || height <= 0) {
+      throw new Error('Width and height must be > 0');
     }
     this.color = color;
     this.width = width;
-    this.heigth = heigth;
+    this.height = height;
   }
 
   getArea(): number {
-    const area = this.width * this.heigth;
+    const area = this.width * this.height;
 
-    return Math.round(area * 100) / 100;
+    return Math.floor(area * 100) / 100;
   }
 }
 
