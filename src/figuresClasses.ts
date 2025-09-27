@@ -19,13 +19,15 @@ export class Triangle implements Figure {
 
   constructor(color: Color, a: number, b: number, c: number) {
     if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('All side lengths must be > 0');
+      throw new Error(
+        `All side lengths must be > 0; received a=${a}, b=${b}, c=${c}`
+      );
     }
 
     const sideMax = Math.max(a, b, c);
 
     if (sideMax >= a + b + c - sideMax) {
-      throw new Error('sides 1, 2 and 3 can not form a triangle');
+      throw new Error(`ides ${a}, ${b} and ${c} can't form a triangle`);
     }
     this.color = color;
     this.a = a;
@@ -50,7 +52,7 @@ export class Circle implements Figure {
 
   constructor(color: Color, radius: number) {
     if (radius <= 0) {
-      throw new Error('radius must be > 0');
+      throw new Error(`Radius must be > 0; received ${radius}`);
     }
     this.color = color;
     this.radius = radius;
@@ -74,7 +76,9 @@ export class Rectangle implements Figure {
 
   constructor(color: Color, width: number, height: number) {
     if (width <= 0 || height <= 0) {
-      throw new Error('Width and height must be > 0');
+      throw new Error(
+        `Width and height must be > 0; received width=${width}, height=${height}`,
+      );
     }
     this.color = color;
     this.width = width;
